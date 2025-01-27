@@ -2,7 +2,7 @@ import { StyleSheet, View, FlatList, Text } from "react-native";
 import { ForecastCard1 } from "../components/Components"; // Import your ForecastCard component
 import Colors from "../assets/colors/Colors";
 
-const HourlyForecast = ({ hourlyData }) => {
+const ThreeHourForecast = ({ hourlyData }) => {
 
   // Function to format time to HH:MM (e.g., 9:00 AM)
   const formatTime = (hour) => {
@@ -12,7 +12,7 @@ const HourlyForecast = ({ hourlyData }) => {
 
   return (
     <View style={styles.forecastContainer}>
-      <Text style={styles.headerText}>Hourly Forecast</Text>
+      <Text style={styles.headerText}>3-Hour Forecast</Text>
 
       <FlatList
         data={hourlyData} // Pass the list of hourly data
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HourlyForecast;
+export default ThreeHourForecast;

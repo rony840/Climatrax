@@ -1,16 +1,21 @@
 import React from 'react';
-import {} from 'react-native';
-import { Weather } from "./src/screens/Screens";
-import AppNavigation from './src/navigation/AppNavigation';
 import { NavigationContainer } from '@react-navigation/native';
-
+import AppNavigation from './src/navigation/AppNavigation'; // Correct path
+import { WeatherProvider } from './src/context/WeatherContext';
+import { CityProvider } from './src/context/CityContext';
+import { ForecastProvider } from './src/context/ForecastContext';
 
 function App(): React.JSX.Element {
-
   return (
-    <NavigationContainer>
-        <AppNavigation />
-      </NavigationContainer>
+    <CityProvider>  {/* Wraps the app with City context */}
+      <WeatherProvider> {/* Wraps the app with Weather context */}
+        <ForecastProvider>
+        <NavigationContainer>
+          <AppNavigation /> {/* Your navigation structure */}
+        </NavigationContainer>
+        </ForecastProvider>
+      </WeatherProvider>
+    </CityProvider>
   );
 }
 

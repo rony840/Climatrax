@@ -3,7 +3,7 @@ import { IconButton } from "./Components";  // Ensure the import path is correct
 import Colors from "../assets/colors/Colors";
 
 const Header = (props) => {
-  const { iconType, screenType, cityName, placeholder, setCityName, onPressSearchBar } = props;
+  const { iconType, screenType, cityName, placeholder, setCityName, onPressSearchBar, onPress1, onSubmit } = props;
 
   // Determine if the header should be editable or not
   const isEditable = screenType === "search"; // Only editable in search screen
@@ -11,7 +11,7 @@ const Header = (props) => {
 
   // Search bar container takes full width in weather screen if no other icons
   const searchBarContainerStyle = isWeatherScreen ? { ...styles.searchBarContainer, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.3)' } : styles.searchBarContainer;
-  const searchBarStyle = isWeatherScreen ? { ...styles.searchBar, width: 315 } : styles.searchBar;
+  const searchBarStyle = isWeatherScreen ? { ...styles.searchBar, width: 315, color:'white' } : styles.searchBar;
   const headerBarStyle = isWeatherScreen ? { ...styles.headerBar, backgroundColor: Colors.transparent} : styles.headerBar;
   return (
     <View style={headerBarStyle}>
@@ -21,7 +21,7 @@ const Header = (props) => {
         <IconButton
           type={isWeatherScreen ? "location" : iconType}
           opacity={false}
-          onPress={() => console.log(isWeatherScreen ? "Location pressed" : "Search pressed")}
+          onPress={isWeatherScreen ? onPress1 : null}
         />
 
         {/* Search Bar or City Name */}
@@ -32,6 +32,7 @@ const Header = (props) => {
             value={cityName}  // The city name, or search text
             onChangeText={setCityName}  // Function to update city name (for search)
             editable={isEditable}  // Disable editing if not on the search screen
+            onSubmitEditing={onSubmit}
           />
         </TouchableOpacity>
       </View>
@@ -73,13 +74,13 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex:1,
-    width: 210,
+    width: 230,
     left:0,
     borderRadius:30,
-    paddingLeft:15,
+    paddingLeft:1,
     paddingRight:15,
-    fontSize:18,
-    color:Colors.white,
+    fontSize:16,
+    color:'black',
     height: 50,
     backgroundColor: Colors.transparent,  // White background for the search bar
 

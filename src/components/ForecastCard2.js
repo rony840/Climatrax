@@ -9,7 +9,7 @@ const ForecastCard2 = ({ day, weatherIcon, highTemp, lowTemp }) => {
 
       {/* Weather Icon */}
       <Image 
-        source={weatherIcon} // Pass in a dynamic weather icon source
+        source={{uri:weatherIcon}} // Pass in a dynamic weather icon source
         style={styles.weatherIcon}
       />
 

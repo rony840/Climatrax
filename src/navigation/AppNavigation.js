@@ -5,7 +5,7 @@ const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Weather" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Search" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="Weather"component={Weather}/>
     </Stack.Navigator>

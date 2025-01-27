@@ -7,10 +7,10 @@ import WeatherStatus from "./WeatherStatus";
 import WeatherElements from "./WeatherElements";
 import CityCard from "./CityCard";
 import CityNameDisplay from "./CityNameDisplay";
-import HourlyForecast from "./HourlyForecast";
+import ThreeHourForecast from "./ThreeHourForecast";
 import ForecastCard1 from "./ForecastCard1";
 import ForecastCard2 from "./ForecastCard2";
-import TenDayForecast from "./TenDayForecast";
+import FiveDayForecast from "./FiveDayForecast";
 import CityList from "./CityList";
 
 
@@ -24,10 +24,10 @@ export {
     WeatherElements,
     CityCard,
     CityNameDisplay,
-    HourlyForecast,
+    ThreeHourForecast,
     ForecastCard1,
     ForecastCard2,
-    TenDayForecast,
+    FiveDayForecast,
     CityList,
 };
 

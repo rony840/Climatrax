@@ -1,12 +1,12 @@
 import { StyleSheet, View, FlatList, Text } from "react-native";
-import { ForecastCard2 } from "../components/Components"; // Import the ForecastCard component
+import { ForecastCard2 } from "./Components"; // Import the ForecastCard component
 import Colors from "../assets/colors/Colors";
 
-const TenDayForecast = ({ dailyData }) => {
+const FiveDayForecast = ({ dailyData }) => {
   
   return (
     <View style={styles.forecastContainer}>
-      <Text style={styles.headerText}>10-Day Forecast</Text>
+      <Text style={styles.headerText}>5-Day Forecast</Text>
 
       <FlatList
         data={dailyData} // Pass the list of daily data
@@ -28,7 +28,7 @@ const TenDayForecast = ({ dailyData }) => {
 const styles = StyleSheet.create({
   forecastContainer: {
     backgroundColor: Colors.semiOrange, // Background for the entire 10-day forecast
-    padding: 15,
+    padding: 10,
     marginBottom: 20,
     height: 260,
     borderRadius:30,
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TenDayForecast;
+export default FiveDayForecast;

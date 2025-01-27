@@ -2,14 +2,14 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import Colors from "../assets/colors/Colors";
 
 const WeatherStatus = (props) => {
-  const { text } = props;
+  const { text, iconURL } = props;
 
   return (
     <View style={styles.container}>
       {/* Weather Icon */}
       <Image
         style={styles.icon}
-        source={require('../assets/icons/cloudy.png')} // Ensure the path is correct
+        source={{uri: iconURL}||require('../assets/icons/cloudy.png')} // Ensure the path is correct
       />
       {/* Weather Status Text */}
       <Text style={styles.text1}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     height: 40,                    // Increase the size of the icon for visibility
     width: 40,
     marginRight: 10,               // Add space between the icon and the text
-    tintColor: Colors.white,             // Set the icon color if you want (adjust as needed)
+    tintColor: Colors.white             // Set the icon color if you want (adjust as needed)
   },
   text1: {
     fontSize: 20,                  // Set a reasonable font size for the text

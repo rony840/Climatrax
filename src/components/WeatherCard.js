@@ -1,10 +1,36 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
-import { TextDisplay, IconButton, Header, TempDisplay, WeatherStatus, WeatherElements } from "../components/Components";
+import { ImageBackground, StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import { TextDisplay, Header, TempDisplay, WeatherStatus, WeatherElements } from "../components/Components";
 import Colors from "../assets/colors/Colors";
+import { useWeather } from "../context/WeatherContext";
+import { useNavigation } from '@react-navigation/native';
+import { useCity } from "../context/CityContext";
 
 const WeatherCard = (props) => {
+  const { loading, error, temp, windSpeed, highTemp, lowTemp, humidity, weatherStatus,date,time,weatherIcon } = useWeather();
+  const { city } = useCity();
   const { text } = props;
+  const navigation = useNavigation();
+  // Round the temperature values (no decimals)
+  const roundedTemp = temp ? Math.round(temp) : null;
+  const roundedHighTemp = highTemp ? Math.round(highTemp) : null;
+  const roundedLowTemp = lowTemp ? Math.round(lowTemp) : null;
+  if (loading) {
+          return (<View>
+            <ActivityIndicator/>
+            <Text>Loading...</Text>
+          </View>
+            );
+      }
+  
+  if (error) {
+      return <Text>Error: {error}</Text>;
+  }
+   
 
+  const citySelection = () => {
+    navigation.replace('Search');
+  }
+  
   return (
     <View style={styles.cardContainer}>
         <ImageBackground
@@ -14,22 +40,24 @@ const WeatherCard = (props) => {
         <Header
         iconType="location"
         screenType="weather"
-        cityName={'Marietta, Atlanta, GA'}
+        cityName={city}
+        onPressSearchBar={citySelection}
+        onPress1={citySelection}
       />
       <View style={styles.detailsContainer1}>
         <TextDisplay text={'Hi, Good Morning...'} />
         <View style={styles.detailsContainer2}>
-          <TempDisplay />
+          <TempDisplay text={roundedTemp+'°C'}/>
           <View style={styles.detailsContainer3}>
-            <WeatherStatus text={'Partly Cloudy'} />
-            <TextDisplay text={'7:30 AM | Jan 27'} />
+            <WeatherStatus iconURL={weatherIcon} text={`${weatherStatus}`} />
+            <TextDisplay text={`${time} | ${date}`} />
           </View>
         </View>
         <View style={styles.elementContainer}>
-            <WeatherElements showIcon={true}/>
-            <WeatherElements showIcon={true}/>
-            <WeatherElements text={'H: 48'}/>
-            <WeatherElements text={'L: 28'}/>
+            <WeatherElements text={windSpeed+'m/s'} showIcon={true} type={'wind'}/>
+            <WeatherElements text={humidity} showIcon={true} type={'humidity'}/>
+            <WeatherElements text={'H: '+roundedHighTemp+'°'}/>
+            <WeatherElements text={'L: '+roundedLowTemp+'°'}/>
         </View>
       </View>
         </ImageBackground>
